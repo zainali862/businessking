@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business King</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{margin:0;font-family:Poppins;background:#0a0a0a;color:white;text-align:center}
+
+header{background:black;padding:15px;font-size:26px;color:gold;font-weight:700}
+
+.hero{padding:80px 20px;background:#111}
+
+.btn{background:gold;color:black;padding:15px 35px;border-radius:30px;text-decoration:none;font-weight:600}
+
+.section{padding:60px 20px}
+
+.counterbox{background:#111;padding:30px;border-radius:15px;display:inline-block;margin-top:20px}
+
+.percent{font-size:60px;color:gold;font-weight:700}
+
+.whatsapp{position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:16px 20px;border-radius:50px;text-decoration:none}
+
+footer{background:black;padding:20px;margin-top:40px}
+</style>
+</head>
+
+<body>
+
+<header>👑 Business King</header>
+
+<div class="hero">
+<h1>Learn Smart Trading</h1>
+<p>Daily Signals • Consistent Profit Guidance</p>
+<br>
+<a class="btn" href="https://whatsapp.com/channel/0029Vb6bEmd1XquRYiK2TB25">Join Channel</a>
+</div>
+
+<div class="section">
+
+<h2>Today Profit</h2>
+
+<div class="counterbox">
+<div id="today" class="percent">0%</div>
+<p>Weekly Total: <span id="week">0</span>%</p>
+<p>Monthly Total: <span id="month">0</span>%</p>
+</div>
+
+</div>
+
+<footer>© 2026 Business King</footer>
+
+<a class="whatsapp" href="https://whatsapp.com/channel/0029Vb6bEmd1XquRYiK2TB25">Channel</a>
+
+<script>
+let today = localStorage.getItem("todayProfit");
+let lastDay = localStorage.getItem("lastDay");
+let week = Number(localStorage.getItem("weekProfit")||0);
+let month = Number(localStorage.getItem("monthProfit")||0);
+
+let d = new Date();
+let day = d.getDate();
+let weekDay = d.getDay();
+
+if(lastDay != day){
+today = Math.floor(Math.random()*7)+9;
+week += today;
+month += today;
+
+localStorage.setItem("todayProfit",today);
+localStorage.setItem("weekProfit",week);
+localStorage.setItem("monthProfit",month);
+localStorage.setItem("lastDay",day);
+}
+
+if(weekDay==1){
+week= today;
+localStorage.setItem("weekProfit",week);
+}
+
+if(day==1){
+month=today;
+localStorage.setItem("monthProfit",month);
+}
+
+let c=0;
+let int=setInterval(()=>{
+if(c>=today){clearInterval(int)}
+document.getElementById("today").innerText=c+"%";
+c++;
+},50);
+
+document.getElementById("week").innerText=week;
+document.getElementById("month").innerText=month;
+</script>
+
+</body>
+</html>
